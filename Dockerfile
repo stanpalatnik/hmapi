@@ -5,7 +5,7 @@ MAINTAINER Stanislav Palatnik "stan@spalatnik.com"
 
 RUN mkdir /restapi
 
-ADD requirements.txt /restapi/requirements.txt
+ADD requirements/requirements.txt /restapi/requirements.txt
 RUN pip install -r /restapi/requirements.txt
 
 WORKDIR /restapi

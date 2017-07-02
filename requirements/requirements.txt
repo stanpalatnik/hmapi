@@ -4,9 +4,3 @@ djangorestframework==3.6.3
 django-filter
 markdown
 gunicorn
-docker-py
-dockerpty
-docopt
-isort==4.2.15
-pylint==1.7.2
-pylint-django
