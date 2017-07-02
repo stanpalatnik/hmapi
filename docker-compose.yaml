@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+  pgdata: {}
+
+services:
+  database:
+    image: postgres:latest
+    volumes:
+        - pgdata:/var/lib/postgresql/data/
+    environment:
+        POSTGRES_DB: books
+        POSTGRES_USER: books_user
+        POSTGRES_PASSWORD: books_user_password
+
+  restapi:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+        - .:/restapi
+    ports:
+        - "8000:8000"
+    links:
+        - database
+    environment:
+        DEBUG: "true"
+        DATABASE_NAME: books
+        DATABASE_USER: books_user
+        DATABASE_PASSWORD: books_user_password
+        DATABASE_SERVICE_HOST: database
+
