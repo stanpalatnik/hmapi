@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.staticfiles',
     'restapi.apps.RestapiConfig',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,17 @@ DATABASES = {
         'HOST': os.getenv('DATABASE_SERVICE_HOST', 'database'),
         'PORT': os.getenv('DATABASE_SERVICE_PORT', 5432),
         'ATOMIC_REQUESTS': True
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
     }
 }
 

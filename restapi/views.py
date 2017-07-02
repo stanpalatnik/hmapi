@@ -7,8 +7,8 @@ from rest_framework import filters
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('title', 'isbn')
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('title', 'isbn')
 
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
